@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       ),
       home: MyHomePage(title: 'Sherifdeen'),
     );
-  }   
+  }
 }
 
 class MyHomePage extends StatefulWidget {
@@ -62,7 +62,6 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
-
   void CallContact() {
     print("Calling Contact");
   }
@@ -72,63 +71,62 @@ class _MyHomePageState extends State<MyHomePage> {
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
 
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-        actions: [
-          IconButton(
-            //iconSize: 12,
-            icon: Icon(Icons.call),
-            onPressed: CallContact,
+  return MaterialApp(
+    home: DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(backgroundColor: Colors.red,
+
+            actions: [
+              IconButton(icon: Icon(Icons.settings),
+                tooltip: "Settings",
+                onPressed: cart,
+              ),
+            ],
+            bottom: TabBar(
+            tabs: [
+             // Tab(icon: Icon(Icons.camera_alt)),
+              Tab(icon: Icon(Icons.directions_railway_outlined)),
+              Tab(icon: Icon(Icons.directions_subway_outlined)),
+              Tab(icon: Icon(Icons.directions_bike_outlined)),
+              ],
           ),
-          IconButton(
-            //iconSize: 12,
-            icon: Icon(Icons.add),
-            onPressed: cart,
+          title: Text("Tab Bar"),
+        ),
+        drawer: Drawer(
+          child: Column(
+            children: [
+              ListTile(
+                leading: Icon(Icons.home),
+                title: Text("Home"),
+                onTap: (){
+                 print("Long pressed");
+                },
+              )
+            ],
           ),
-        ],
-      ),
-      body: Center(
-
-
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("Home")),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.business), title: Text("Business")),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school), title: Text("School"),),
-          // BottomNavigationBarItem(icon: Icon(Icons.work), title: Text("Work"),),
-        ],
-        currentIndex: _selectIndex,
-        onTap: ItemTapped,
-        fixedColor: Colors.red,
+        ),
+        body: TabBarView(
+          children: [
+           // Icon(Icons.camera_alt),
+            Icon(Icons.directions_railway_outlined),
+            Icon(Icons.directions_subway_outlined),
+            Icon(Icons.directions_bike_outlined),
+          ],
+        ),
       ),
 
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
-      // This trailing comma makes auto-formatting nicer for build methods.
-    );
+    )
+  );
+
+
+
+
   }
+
 
   void cart() {
-    print("Shopping time");
-  }
-
-  void ItemTapped(int index) {
-    setState(() {
-      _selectIndex = index;
-    });
+    print("Settings");
   }
 }
